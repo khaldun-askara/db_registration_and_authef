@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Zxcvbn;
+using Zxcvbn.Matcher;
 
 namespace reg_and_aut
 {
@@ -26,7 +28,14 @@ namespace reg_and_aut
         {
             Regex spaces1 = new Regex("(?<![^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?=[^ \f\n\r\t\v])");
             Regex spaces2 = new Regex("(?<=[^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?![^ \f\n\r\t\v])");
-            return spaces2.Replace(spaces1.Replace(str, ""),"");
+            return spaces2.Replace(spaces1.Replace(str, ""), "");
+        }
+
+        public static int PasswordScore(string pass)
+        {
+            var zx = new Zxcvbn.Zxcvbn();
+            var result = zx.EvaluatePassword(pass, null);
+            return result.Score;
         }
     }
 }

@@ -18,15 +18,23 @@ namespace reg_and_aut
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            while (true)
+            //while (true)
+            //{
+            //    String text = Console.ReadLine();
+            //    if (text == "0")
+            //        break;
+            //    Console.WriteLine("Соответствие:  " + login_and_password.CorrectLogin(text).ToString());
+            //    Console.WriteLine("Без пробелов внутри: \"" + login_and_password.DelSpaces(text) + "\"");
+            //    Console.WriteLine("Без пробелов снаружи: \"" + login_and_password.DelBorderSpaces(text) + "\"");
+            //    Console.WriteLine("Без пробелов внутри и снаружи: \"" + login_and_password.DelSpaces(login_and_password.DelBorderSpaces(text)) + "\"");
+            //}
+
+            while(true)
             {
                 String text = Console.ReadLine();
                 if (text == "0")
                     break;
-                Console.WriteLine("Соответствие:  " + login_and_password.CorrectLogin(text).ToString());
-                Console.WriteLine("Без пробелов внутри: \"" + login_and_password.DelSpaces(text) + "\"");
-                Console.WriteLine("Без пробелов снаружи: \"" + login_and_password.DelBorderSpaces(text) + "\"");
-                Console.WriteLine("Без пробелов внутри и снаружи: \"" + login_and_password.DelSpaces(login_and_password.DelBorderSpaces(text)) + "\"");
+                Console.WriteLine(login_and_password.PasswordScore(text));
             }
         }
     }
