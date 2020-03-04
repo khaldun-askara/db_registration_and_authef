@@ -22,41 +22,5 @@ namespace reg_and_aut.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
-        public string Host {
-            get {
-                return ((string)(this["Host"]));
-            }
-            set {
-                this["Host"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5432")]
-        public int Port {
-            get {
-                return ((int)(this["Port"]));
-            }
-            set {
-                this["Port"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("reg and auth")]
-        public string Name {
-            get {
-                return ((string)(this["Name"]));
-            }
-            set {
-                this["Name"] = value;
-            }
-        }
     }
 }

@@ -29,12 +29,27 @@ namespace reg_and_aut
             //    Console.WriteLine("Без пробелов внутри и снаружи: \"" + login_and_password.DelSpaces(login_and_password.DelBorderSpaces(text)) + "\"");
             //}
 
-            while(true)
+            //while(true)
+            //{
+            //    String text = Console.ReadLine();
+            //    if (text == "0")
+            //        break;
+            //    Console.WriteLine(login_and_password.PasswordScore(text));
+            //}
+
+            while (true)
             {
                 String text = Console.ReadLine();
+                String text2 = Console.ReadLine();
                 if (text == "0")
                     break;
-                Console.WriteLine(login_and_password.PasswordScore(text));
+                byte[] temp_salt = login_and_password.GetSalt();
+                string temp_s_salt = Convert.ToBase64String(temp_salt);
+                string temp_s_hash = Convert.ToBase64String(login_and_password.GetHash(text, temp_salt));
+                Console.WriteLine(temp_s_salt);
+                Console.WriteLine(temp_s_hash);
+                Console.WriteLine(login_and_password.VerifyPassword(text2, temp_s_salt, temp_s_hash));
+                //Console.WriteLine(Convert.ToInt32(login_and_password.GetSalt().ToString()));
             }
         }
     }

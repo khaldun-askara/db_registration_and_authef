@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Zxcvbn;
-using Zxcvbn.Matcher;
+using System.Security.Cryptography;
 
 namespace reg_and_aut
 {
     class login_and_password
     {
         private static readonly Regex loginRegex = new Regex("^[А-Яа-яA-Za-z \f\n\r\t\v]{8,50}$");
+        private static int salt_size = 86;
+        private static int hash_size = 86;
+        public static int iterations = 100000;
 
         public static bool CorrectLogin(string login)
         {
@@ -36,6 +38,26 @@ namespace reg_and_aut
             var zx = new Zxcvbn.Zxcvbn();
             var result = zx.EvaluatePassword(pass, null);
             return result.Score;
+        }
+
+        public static byte[] GetSalt()
+        {
+            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+            byte[] salt = new byte[salt_size];
+            provider.GetBytes(salt);
+            return salt;
+        }
+
+        public static byte[] GetHash(string password, byte[] salt)
+        {
+            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
+            return pbkdf2.GetBytes(hash_size);
+        }
+
+        public static bool VerifyPassword(string password, string salt, string good_hash)
+        {
+            byte[] byte_mass_salt = Convert.FromBase64String(salt);
+            return good_hash == Convert.ToBase64String(GetHash(password, byte_mass_salt));
         }
     }
 }
