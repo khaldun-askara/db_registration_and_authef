@@ -52,15 +52,15 @@ namespace reg_and_aut
             //    //Console.WriteLine(Convert.ToInt32(login_and_password.GetSalt().ToString()));
             //}
 
-            //while (true)
-            //{
-            //    String text = Console.ReadLine();
-            //    String text2 = Console.ReadLine();
-            //    if (text == "0")
-            //        break;
-            //    database.AddUser(text, text2);
-            //    Console.WriteLine("Done");
-            //}
+            while (true)
+            {
+                String text = Console.ReadLine();
+                String text2 = Console.ReadLine();
+                if (text == "0")
+                    break;
+                database.AddUser(text, text2);
+                Console.WriteLine("Done");
+            }
         }
     }
 }

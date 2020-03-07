@@ -46,7 +46,7 @@ namespace reg_and_aut
                 var sCommand = new NpgsqlCommand
                 {
                     Connection = sConn,
-                    CommandText = $@"INSERT INTO users (login, password_hash, salt) VALUES (@login, @password_hash, @salt)"
+                    CommandText = $@"INSERT INTO users (login, password_hash, salt, reg_date) VALUES (@login, @password_hash, @salt, current_date)"
                 };
                 sCommand.Parameters.AddWithValue("@login", login);
                 sCommand.Parameters.AddWithValue("@password_hash", hash_str);
@@ -54,5 +54,7 @@ namespace reg_and_aut
                 sCommand.ExecuteNonQuery();
             }
         }
+
+
     }
 }
