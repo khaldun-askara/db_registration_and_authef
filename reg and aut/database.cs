@@ -34,5 +34,25 @@ namespace reg_and_aut
                 return (long)sCommand.ExecuteScalar() > 0;
             }
         }
+
+        public static void AddUser (string login, string password)
+        {
+            byte[] salt = login_and_password.GetSalt();
+            string salt_str = Convert.ToBase64String(salt);
+            string hash_str = Convert.ToBase64String(login_and_password.GetHash(password, salt));
+            using (var sConn = new NpgsqlConnection(sConnStr))
+            {
+                sConn.Open();
+                var sCommand = new NpgsqlCommand
+                {
+                    Connection = sConn,
+                    CommandText = $@"INSERT INTO users (login, password_hash, salt) VALUES (@login, @password_hash, @salt)"
+                };
+                sCommand.Parameters.AddWithValue("@login", login);
+                sCommand.Parameters.AddWithValue("@password_hash", hash_str);
+                sCommand.Parameters.AddWithValue("@salt", salt_str);
+                sCommand.ExecuteNonQuery();
+            }
+        }
     }
 }
