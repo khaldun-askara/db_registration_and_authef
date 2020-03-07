@@ -55,6 +55,26 @@ namespace reg_and_aut
             }
         }
 
-
+        public static (string, string) GoodHashAndSalt (string login)
+        {
+            string goodhash = "", salt = "";
+            using (var sConn = new NpgsqlConnection(sConnStr))
+            {
+                sConn.Open();
+                var sCommand = new NpgsqlCommand
+                {
+                    Connection = sConn,
+                    CommandText = $@"SELECT * FROM users WHERE lower(@currentLogin) = lower(login);"
+                };
+                sCommand.Parameters.AddWithValue("@currentLogin", login);
+                using (var reader = sCommand.ExecuteReader())
+                {
+                    reader.Read();
+                    goodhash = (string)reader["password_hash"];
+                    salt = (string)reader["salt"];
+                }
+                return (goodhash, salt);
+            }
+        }
     }
 }
