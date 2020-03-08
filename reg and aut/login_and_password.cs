@@ -10,14 +10,14 @@ namespace reg_and_aut
 {
     class login_and_password
     {
-        private static readonly Regex loginRegex = new Regex("^[А-Яа-яA-Za-z \f\n\r\t\v]{8,50}$");
+        private static readonly Regex loginRegex = new Regex("^[А-Яа-яA-Za-z \f\n\r\t\v]{1,50}$");
         private static int salt_size = 86;
         private static int hash_size = 86;
         public static int iterations = 100000;
 
         public static bool CorrectLogin(string login)
         {
-            return loginRegex.IsMatch(login);
+            return loginRegex.IsMatch(DelBorderSpaces(DelSpaces(login)));
         }
 
         public static string DelSpaces(string str)
