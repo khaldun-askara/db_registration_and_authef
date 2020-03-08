@@ -63,9 +63,8 @@ namespace reg_and_aut
                     erP_login.SetError(txtB_login_reg, "Некорректный логин! Доспустимые символы: буквы латиницы, кириллицы, пробелы. Допустима длина до 50 символов.");
                 }
                 if (database.IsLoginExists
-                    (login_and_password.DelBorderSpaces
                     (login_and_password.DelSpaces
-                    (txtB_login_reg.Text))))
+                    (txtB_login_reg.Text)))
                 {
                     something_wrong = true;
                     erP_login.SetError(txtB_login_reg, "Логин занят");
@@ -80,9 +79,8 @@ namespace reg_and_aut
             {
                 // проверка сложности пароля
                 if (login_and_password.PasswordScore
-                    (login_and_password.DelBorderSpaces
                     (login_and_password.DelSpaces
-                    (txtB_password_reg.Text))) <=2)
+                    (txtB_password_reg.Text)) <=2)
                 {
                     something_wrong = true;
                     erP_login.SetError(txtB_password_reg, "Пароль слишком простой");
@@ -106,8 +104,8 @@ namespace reg_and_aut
         }
         private void btn_reg_OK_Click(object sender, EventArgs e)
         {
-            string correct_login = (login_and_password.DelBorderSpaces(login_and_password.DelSpaces(txtB_login_reg.Text)));
-            string correct_password = (login_and_password.DelBorderSpaces(login_and_password.DelSpaces(txtB_password_reg.Text)));
+            string correct_login = (login_and_password.DelSpaces(txtB_login_reg.Text));
+            string correct_password = (login_and_password.DelSpaces(txtB_password_reg.Text));
             btn_reg_OK.Text = "Подождите...";
             try
             {
@@ -134,17 +132,26 @@ namespace reg_and_aut
         }
         private void btn_auth_OK_Click(object sender, EventArgs e)
         {
-            string correct_login = (login_and_password.DelBorderSpaces(login_and_password.DelSpaces(txtB_login_auth.Text)));
-            string correct_password = (login_and_password.DelBorderSpaces(login_and_password.DelSpaces(txtB_password_auth.Text)));
+            string correct_login = (login_and_password.DelSpaces(txtB_login_auth.Text));
+            string correct_password = (login_and_password.DelSpaces(txtB_password_auth.Text));
             if (!database.IsLoginExists(correct_login))
             {
                 MessageBox.Show("Неверный логин или пароль!");
                 return;
             }
-            (string, string) goodhash_salt = database.GoodHashAndSalt(correct_login);
-            if (!login_and_password.VerifyPassword(correct_password, goodhash_salt.Item2, goodhash_salt.Item1))
+            try
             {
-                MessageBox.Show("Неверный логин или пароль!");
+                (string, string) goodhash_salt = database.GoodHashAndSalt(correct_login);
+                if (!login_and_password.VerifyPassword(correct_password, goodhash_salt.Item2, goodhash_salt.Item1))
+                {
+                    MessageBox.Show("Неверный логин или пароль!");
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ой! Что-то пошло не так! Попробуйте снова! (｡╯3╰｡)");
+                Again();
                 return;
             }
             MessageBox.Show("Аутентификация прошла успешно!");

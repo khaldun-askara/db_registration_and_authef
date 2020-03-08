@@ -14,32 +14,27 @@ namespace reg_and_aut
         private static int salt_size = 86;
         private static int hash_size = 86;
         public static int iterations = 100000;
-
         public static bool CorrectLogin(string login)
         {
-            return loginRegex.IsMatch(DelBorderSpaces(DelSpaces(login)));
+            return loginRegex.IsMatch(DelSpaces(login));
         }
-
         public static string DelSpaces(string str)
         {
             Regex spaces = new Regex("[ \f\n\r\t\v]{1,}");
-            return spaces.Replace(str, " ");
+            return spaces.Replace(DelBorderSpaces(str), " ");
         }
-
-        public static string DelBorderSpaces(string str)
+        private static string DelBorderSpaces(string str)
         {
             Regex spaces1 = new Regex("(?<![^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?=[^ \f\n\r\t\v])");
             Regex spaces2 = new Regex("(?<=[^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?![^ \f\n\r\t\v])");
             return spaces2.Replace(spaces1.Replace(str, ""), "");
         }
-
         public static int PasswordScore(string pass)
         {
             var zx = new Zxcvbn.Zxcvbn();
             var result = zx.EvaluatePassword(pass, null);
             return result.Score;
         }
-
         public static byte[] GetSalt()
         {
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
@@ -47,13 +42,11 @@ namespace reg_and_aut
             provider.GetBytes(salt);
             return salt;
         }
-
         public static byte[] GetHash(string password, byte[] salt)
         {
             Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
             return pbkdf2.GetBytes(hash_size);
         }
-
         public static bool VerifyPassword(string password, string salt, string good_hash)
         {
             byte[] byte_mass_salt = Convert.FromBase64String(salt);

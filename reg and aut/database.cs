@@ -19,7 +19,6 @@ namespace reg_and_aut
             AutoPrepareMinUsages = 2,
             MaxAutoPrepare = 10
         }.ConnectionString;
-
         public static bool IsLoginExists (string login)
         {
             using (var sConn = new NpgsqlConnection(sConnStr))
@@ -34,7 +33,6 @@ namespace reg_and_aut
                 return (long)sCommand.ExecuteScalar() > 0;
             }
         }
-
         public static void AddUser (string login, string password)
         {
             byte[] salt = login_and_password.GetSalt();
@@ -54,7 +52,6 @@ namespace reg_and_aut
                 sCommand.ExecuteNonQuery();
             }
         }
-
         public static (string, string) GoodHashAndSalt (string login)
         {
             string goodhash = "", salt = "";

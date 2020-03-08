@@ -69,7 +69,7 @@
             this.pnl_reg_or_auth.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_reg_or_auth.Controls.Add(this.btn_reg);
             this.pnl_reg_or_auth.Controls.Add(this.btn_auth);
-            this.pnl_reg_or_auth.Location = new System.Drawing.Point(143, 131);
+            this.pnl_reg_or_auth.Location = new System.Drawing.Point(143, 91);
             this.pnl_reg_or_auth.Name = "pnl_reg_or_auth";
             this.pnl_reg_or_auth.Size = new System.Drawing.Size(359, 266);
             this.pnl_reg_or_auth.TabIndex = 1;
@@ -86,12 +86,13 @@
             // 
             // pnl_auth
             // 
+            this.pnl_auth.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_auth.Controls.Add(this.btn_auth_OK);
             this.pnl_auth.Controls.Add(this.lbl_password_auth);
             this.pnl_auth.Controls.Add(this.lbl_login_auth);
             this.pnl_auth.Controls.Add(this.txtB_password_auth);
             this.pnl_auth.Controls.Add(this.txtB_login_auth);
-            this.pnl_auth.Location = new System.Drawing.Point(94, 103);
+            this.pnl_auth.Location = new System.Drawing.Point(94, 63);
             this.pnl_auth.Name = "pnl_auth";
             this.pnl_auth.Size = new System.Drawing.Size(456, 323);
             this.pnl_auth.TabIndex = 2;
@@ -150,12 +151,13 @@
             // 
             // pnl_reg
             // 
+            this.pnl_reg.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_reg.Controls.Add(this.btn_reg_OK);
             this.pnl_reg.Controls.Add(this.lbl_password_reg);
             this.pnl_reg.Controls.Add(this.lbl_login_reg);
             this.pnl_reg.Controls.Add(this.txtB_password_reg);
             this.pnl_reg.Controls.Add(this.txtB_login_reg);
-            this.pnl_reg.Location = new System.Drawing.Point(94, 103);
+            this.pnl_reg.Location = new System.Drawing.Point(94, 63);
             this.pnl_reg.Name = "pnl_reg";
             this.pnl_reg.Size = new System.Drawing.Size(456, 323);
             this.pnl_reg.TabIndex = 5;
@@ -206,7 +208,8 @@
             // 
             // btn_again
             // 
-            this.btn_again.Location = new System.Drawing.Point(253, 432);
+            this.btn_again.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_again.Location = new System.Drawing.Point(255, 392);
             this.btn_again.Name = "btn_again";
             this.btn_again.Size = new System.Drawing.Size(138, 45);
             this.btn_again.TabIndex = 5;
@@ -218,11 +221,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 529);
-            this.Controls.Add(this.btn_again);
-            this.Controls.Add(this.pnl_reg);
-            this.Controls.Add(this.pnl_auth);
+            this.ClientSize = new System.Drawing.Size(644, 449);
             this.Controls.Add(this.pnl_reg_or_auth);
+            this.Controls.Add(this.btn_again);
+            this.Controls.Add(this.pnl_auth);
+            this.Controls.Add(this.pnl_reg);
             this.Name = "frm_reg_and_auth";
             this.Text = "господи я не знаю как назвать";
             this.pnl_reg_or_auth.ResumeLayout(false);
