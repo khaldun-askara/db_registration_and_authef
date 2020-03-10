@@ -79,7 +79,7 @@ namespace reg_and_aut
             {
                 // проверка сложности пароля
                 if (login_and_password.PasswordScore
-                    (login_and_password.DelSpaces
+                    (login_and_password.DelBorderSpaces
                     (txtB_password_reg.Text)) <=2)
                 {
                     something_wrong = true;
@@ -105,7 +105,7 @@ namespace reg_and_aut
         private void btn_reg_OK_Click(object sender, EventArgs e)
         {
             string correct_login = (login_and_password.DelSpaces(txtB_login_reg.Text));
-            string correct_password = (login_and_password.DelSpaces(txtB_password_reg.Text));
+            string correct_password = (login_and_password.DelBorderSpaces(txtB_password_reg.Text));
             btn_reg_OK.Text = "Подождите...";
             try
             {
