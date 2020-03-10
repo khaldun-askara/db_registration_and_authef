@@ -10,7 +10,7 @@ namespace reg_and_aut
 {
     class login_and_password
     {
-        private static readonly Regex loginRegex = new Regex("^[А-ЯЁа-яёA-Za-z0-9 \\f\\n\\r\\t\\v~`!@\\#\\$%\\^&\\.,\\*\\(\\)_\\+\\-=\"№;:\\?\\{\\}\\[\\]\\<\\>\\|/]{1,50}$");
+        private static readonly Regex loginRegex = new Regex("^[А-ЯЁа-яёA-Za-z0-9 \\f\\n\\r\\t\\v~`!@\\#\\$%\\^&\\.,\\*\\(\\)_\\+\\-=\"'№;:\\?\\{\\}\\[\\]\\<\\>\\|/]{1,50}$");
         private static int salt_size = 86;
         private static int hash_size = 86;
         public static int iterations = 100000;

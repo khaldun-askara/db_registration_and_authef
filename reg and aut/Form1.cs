@@ -60,14 +60,14 @@ namespace reg_and_aut
                 if (!login_and_password.CorrectLogin(txtB_login_reg.Text))
                 {
                     something_wrong = true;
-                    erP_login.SetError(txtB_login_reg, "Некорректный логин! Доспустимые символы: буквы латиницы, кириллицы, пробелы. Допустима длина до 50 символов.");
+                    erP_login.SetError(txtB_login_reg, "Некорректный логин! Доспустимые символы: символы, изображённые на классической русско-английской раскладке клавиатуре, а также любые пробельные символы.");
                 }
                 if (database.IsLoginExists
                     (login_and_password.DelSpaces
                     (txtB_login_reg.Text)))
                 {
                     something_wrong = true;
-                    erP_login.SetError(txtB_login_reg, "Логин занят");
+                    erP_login.SetError(txtB_login_reg, "Логин занят.");
                 }
             }
             if (txtB_password_reg.Text == "" || txtB_password_reg.Text == null)
@@ -83,7 +83,7 @@ namespace reg_and_aut
                     (txtB_password_reg.Text)) <=2)
                 {
                     something_wrong = true;
-                    erP_login.SetError(txtB_password_reg, "Пароль слишком простой");
+                    erP_login.SetError(txtB_password_reg, "Пароль слишком простой.");
                 }
             }
 
