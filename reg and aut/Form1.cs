@@ -133,7 +133,7 @@ namespace reg_and_aut
         private void btn_auth_OK_Click(object sender, EventArgs e)
         {
             string correct_login = (login_and_password.DelSpaces(txtB_login_auth.Text));
-            string correct_password = (login_and_password.DelSpaces(txtB_password_auth.Text));
+            string correct_password = (login_and_password.DelBorderSpaces(txtB_password_auth.Text));
             if (!database.IsLoginExists(correct_login))
             {
                 MessageBox.Show("Неверный логин или пароль!");

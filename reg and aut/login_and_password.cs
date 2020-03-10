@@ -23,7 +23,7 @@ namespace reg_and_aut
             Regex spaces = new Regex("[ \f\n\r\t\v]{1,}");
             return spaces.Replace(DelBorderSpaces(str), " ");
         }
-        private static string DelBorderSpaces(string str)
+        public static string DelBorderSpaces(string str)
         {
             Regex spaces1 = new Regex("(?<![^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?=[^ \f\n\r\t\v])");
             Regex spaces2 = new Regex("(?<=[^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?![^ \f\n\r\t\v])");
