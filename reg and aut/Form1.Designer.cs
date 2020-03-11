@@ -136,6 +136,7 @@
             // txtB_login_auth
             // 
             this.txtB_login_auth.Location = new System.Drawing.Point(86, 79);
+            this.txtB_login_auth.MaxLength = 50;
             this.txtB_login_auth.Name = "txtB_login_auth";
             this.txtB_login_auth.Size = new System.Drawing.Size(284, 22);
             this.txtB_login_auth.TabIndex = 0;
@@ -201,6 +202,7 @@
             // txtB_login_reg
             // 
             this.txtB_login_reg.Location = new System.Drawing.Point(86, 79);
+            this.txtB_login_reg.MaxLength = 50;
             this.txtB_login_reg.Name = "txtB_login_reg";
             this.txtB_login_reg.Size = new System.Drawing.Size(284, 22);
             this.txtB_login_reg.TabIndex = 0;

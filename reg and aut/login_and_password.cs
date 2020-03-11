@@ -10,7 +10,7 @@ namespace reg_and_aut
 {
     class login_and_password
     {
-        private static readonly Regex loginRegex = new Regex("^[А-ЯЁа-яёA-Za-z0-9 \\f\\n\\r\\t\\v~`!@\\#\\$%\\^&\\.,\\*\\(\\)_\\+\\-=\"'№;:\\?\\{\\}\\[\\]\\<\\>\\|/]{1,50}$");
+        private static readonly Regex loginRegex = new Regex("^[А-ЯЁа-яёA-Za-z0-9 \\f\\n\\r\\t\\v~`!@\\#\\$%\\^&\\.,\\*\\(\\)_\\+\\-=\"'№;:\\?\\{\\}\\[\\]\\<\\>\\|/\\\\]{1,50}$");
         private static int salt_size = 86;
         private static int hash_size = 86;
         public static int iterations = 100000;
@@ -20,13 +20,13 @@ namespace reg_and_aut
         }
         public static string DelSpaces(string str)
         {
-            Regex spaces = new Regex("[ \f\n\r\t\v]{1,}");
+            Regex spaces = new Regex("\\s+");
             return spaces.Replace(DelBorderSpaces(str), " ");
         }
         public static string DelBorderSpaces(string str)
         {
-            Regex spaces1 = new Regex("(?<![^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?=[^ \f\n\r\t\v])");
-            Regex spaces2 = new Regex("(?<=[^ \f\n\r\t\v])[ \f\n\r\t\v]{1,}(?![^ \f\n\r\t\v])");
+            Regex spaces1 = new Regex("(?<![^ \\f\\n\\r\\t\\v])[ \\f\\n\\r\\t\\v]{1,}(?=[^ \\f\\n\\r\\t\\v])");
+            Regex spaces2 = new Regex("(?<=[^ \\f\\n\\r\\t\\v])[ \\f\\n\\r\\t\\v]{1,}(?![^ \\f\\n\\r\\t\\v])");
             return spaces2.Replace(spaces1.Replace(str, ""), "");
         }
         public static int PasswordScore(string pass)
